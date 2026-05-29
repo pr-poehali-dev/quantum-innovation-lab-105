@@ -98,7 +98,7 @@ export function CartDrawer() {
                 </div>
                 {total >= 2000 && (
                   <p className="text-xs text-green-700 bg-green-50 px-3 py-2 rounded-lg">
-                    🎁 Вы получите подарок к заказу!
+                    🎁 Мы добавим образцы других сортов чая в подарок!
                   </p>
                 )}
                 {total >= 2500 && (
