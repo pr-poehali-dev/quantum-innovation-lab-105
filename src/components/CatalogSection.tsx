@@ -7,11 +7,11 @@ const products = [
   { id: 1, name: "Ассам", type: "Чёрный чай", desc: "Терпкий, бодрящий", price: 450, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/6ca0a88b-4aaa-4bd2-8638-9fba5891f9a5.jpg" },
   { id: 2, name: "Жасминовый жемчуг", type: "Зелёный чай", desc: "Нежный аромат", price: 550, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/c256892b-e1cc-4cf0-bde0-34f3343fa9f6.jpg" },
   { id: 3, name: "Молочный улун", type: "Улун", desc: "Сливочный вкус", price: 670, badge: "Хит", discount: 15, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/94e129df-ef58-4a6a-952f-bb77dbdb47cf.jpg" },
-  { id: 4, name: "Пуэр Шу", type: "Пуэр", desc: "Земляной, глубокий", price: 890, badge: "Хит", discount: 15, image: null },
-  { id: 5, name: "Бай Му Дань", type: "Белый чай", desc: "Медовый вкус", price: 990, badge: null, image: null },
-  { id: 6, name: "Вечерний сбор", type: "Травяной", desc: "Мята, ромашка, чабрец", price: 390, badge: null, image: null },
-  { id: 7, name: "Фруктовый микс", type: "Фруктовый чай", desc: "Малина, шиповник, яблоко", price: 420, badge: "Новинка", image: null },
-  { id: 8, name: "Цейлонский OPA", type: "Чёрный чай", desc: "Классика, яркий настой", price: 380, badge: null, image: null },
+  { id: 4, name: "Пуэр Шу", type: "Пуэр", desc: "Земляной, глубокий", price: 890, badge: "Хит", discount: 15, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/77625e14-50d3-4d40-8dad-ac0e69a563d6.jpg" },
+  { id: 5, name: "Бай Му Дань", type: "Белый чай", desc: "Медовый вкус", price: 990, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/f03d235d-398a-46ba-afa7-a2ee55815a95.jpg" },
+  { id: 6, name: "Вечерний сбор", type: "Травяной", desc: "Мята, ромашка, чабрец", price: 390, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/e200f7b7-526b-4964-a619-58d9757870c0.jpg" },
+  { id: 7, name: "Фруктовый микс", type: "Фруктовый чай", desc: "Малина, шиповник, яблоко", price: 420, badge: "Новинка", image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/4132d2b9-301b-48fa-97fb-3e2fc8b3d45c.jpg" },
+  { id: 8, name: "Цейлонский OPA", type: "Чёрный чай", desc: "Классика, яркий настой", price: 380, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/8b6b7e07-47aa-4cfc-8e67-17eea05a814c.jpg" },
   { id: 9, name: "Масала", type: "Пряный чай", desc: "Имбирь, кардамон, корица", price: 490, badge: null, image: null },
 ];
 
