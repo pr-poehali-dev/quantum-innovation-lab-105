@@ -222,7 +222,7 @@ export function CartDrawer() {
                     <div>
                       <label className="text-sm text-muted-foreground block mb-1.5">Полный почтовый адрес *</label>
                       <Input
-                        placeholder="Город, улица, дом, квартира"
+                        placeholder="Город, улица, дом"
                         value={form.address}
                         onChange={(e) => setForm({ ...form, address: e.target.value })}
                         required
