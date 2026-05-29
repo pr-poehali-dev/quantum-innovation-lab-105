@@ -8,7 +8,11 @@ import Icon from "@/components/ui/icon";
 export function CartDrawer() {
   const { items, removeItem, updateQty, clearCart, total, count, isOpen, setIsOpen } = useCart();
   const [step, setStep] = useState<"cart" | "form" | "done">("cart");
+  const [delivery, setDelivery] = useState<"courier" | "post">("courier");
   const [form, setForm] = useState({ name: "", phone: "", address: "", comment: "" });
+
+  const deliveryCost = delivery === "courier" ? (total >= 2500 ? 0 : 200) : 350;
+  const grandTotal = total + deliveryCost;
 
   const handleOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,20 +96,56 @@ export function CartDrawer() {
 
             {items.length > 0 && (
               <div className="px-6 py-4 border-t border-border space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Итого</span>
-                  <span className="font-semibold text-lg">{total} ₽</span>
+                <p className="text-sm font-medium">Способ доставки</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setDelivery("courier")}
+                    className={`flex flex-col items-start gap-1 p-3 rounded-xl border text-left transition-colors ${delivery === "courier" ? "border-primary bg-primary/5" : "border-border hover:bg-muted/40"}`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Icon name="Truck" size={14} className={delivery === "courier" ? "text-primary" : "text-muted-foreground"} />
+                      <span className="text-sm font-medium">Курьер</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {total >= 2500 ? "Бесплатно 🎉" : "200 ₽"}
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => setDelivery("post")}
+                    className={`flex flex-col items-start gap-1 p-3 rounded-xl border text-left transition-colors ${delivery === "post" ? "border-primary bg-primary/5" : "border-border hover:bg-muted/40"}`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Icon name="MailOpen" size={14} className={delivery === "post" ? "text-primary" : "text-muted-foreground"} />
+                      <span className="text-sm font-medium">Почта</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">от 350 ₽</span>
+                  </button>
                 </div>
+
                 {total >= 2000 && (
                   <p className="text-xs text-green-700 bg-green-50 px-3 py-2 rounded-lg">
                     🎁 Мы добавим образцы других сортов чая в подарок!
                   </p>
                 )}
-                {total >= 2500 && (
+                {total >= 2500 && delivery === "courier" && (
                   <p className="text-xs text-green-700 bg-green-50 px-3 py-2 rounded-lg">
-                    🚚 Бесплатная доставка курьером!
+                    🚚 Доставка курьером бесплатно!
                   </p>
                 )}
+
+                <div className="flex justify-between items-center pt-1">
+                  <span className="text-sm text-muted-foreground">Товары</span>
+                  <span className="text-sm">{total} ₽</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Доставка</span>
+                  <span className="text-sm">{deliveryCost === 0 ? "Бесплатно" : `${deliveryCost} ₽`}</span>
+                </div>
+                <div className="flex justify-between items-center pt-1 border-t border-border">
+                  <span className="font-medium">Итого</span>
+                  <span className="font-semibold text-lg">{grandTotal} ₽</span>
+                </div>
+
                 <Button
                   className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
                   onClick={() => setStep("form")}
@@ -120,12 +160,21 @@ export function CartDrawer() {
         {step === "form" && (
           <>
             <div className="flex-1 overflow-y-auto px-6 py-4">
-              <div className="mb-4 p-3 bg-muted/40 rounded-xl">
+              <div className="mb-4 p-3 bg-muted/40 rounded-xl space-y-1">
                 <p className="text-xs text-muted-foreground mb-1">Ваш заказ</p>
                 {items.map((i) => (
                   <p key={i.id} className="text-sm">{i.name} × {i.quantity} — {(i.discountedPrice ?? i.price) * i.quantity} ₽</p>
                 ))}
-                <p className="text-sm font-semibold mt-1 pt-1 border-t border-border">Итого: {total} ₽</p>
+                <div className="border-t border-border pt-1 mt-1 space-y-0.5">
+                  <div className="flex justify-between text-sm text-muted-foreground">
+                    <span>Доставка ({delivery === "courier" ? "Курьер" : "Почта России"})</span>
+                    <span>{deliveryCost === 0 ? "Бесплатно" : `${deliveryCost} ₽`}</span>
+                  </div>
+                  <div className="flex justify-between text-sm font-semibold">
+                    <span>Итого</span>
+                    <span>{grandTotal} ₽</span>
+                  </div>
+                </div>
               </div>
 
               <form onSubmit={handleOrder} className="space-y-4">
