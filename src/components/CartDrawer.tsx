@@ -9,7 +9,7 @@ export function CartDrawer() {
   const { items, removeItem, updateQty, clearCart, total, count, isOpen, setIsOpen } = useCart();
   const [step, setStep] = useState<"cart" | "form" | "done">("cart");
   const [delivery, setDelivery] = useState<"courier" | "post">("courier");
-  const [form, setForm] = useState({ name: "", phone: "", address: "", comment: "" });
+  const [form, setForm] = useState({ name: "", phone: "", address: "", index: "", comment: "" });
 
   const deliveryCost = delivery === "courier" ? (total >= 2500 ? 0 : 200) : 350;
   const grandTotal = total + deliveryCost;
@@ -197,15 +197,39 @@ export function CartDrawer() {
                     required
                   />
                 </div>
-                <div>
-                  <label className="text-sm text-muted-foreground block mb-1.5">Адрес доставки *</label>
-                  <Input
-                    placeholder="Город, улица, дом, квартира"
-                    value={form.address}
-                    onChange={(e) => setForm({ ...form, address: e.target.value })}
-                    required
-                  />
-                </div>
+                {delivery === "courier" ? (
+                  <div>
+                    <label className="text-sm text-muted-foreground block mb-1.5">Адрес доставки *</label>
+                    <Input
+                      placeholder="Город, улица, дом, квартира"
+                      value={form.address}
+                      onChange={(e) => setForm({ ...form, address: e.target.value })}
+                      required
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      <label className="text-sm text-muted-foreground block mb-1.5">Почтовый индекс *</label>
+                      <Input
+                        placeholder="123456"
+                        maxLength={6}
+                        value={form.index}
+                        onChange={(e) => setForm({ ...form, index: e.target.value.replace(/\D/g, "") })}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm text-muted-foreground block mb-1.5">Полный почтовый адрес *</label>
+                      <Input
+                        placeholder="Город, улица, дом, квартира"
+                        value={form.address}
+                        onChange={(e) => setForm({ ...form, address: e.target.value })}
+                        required
+                      />
+                    </div>
+                  </>
+                )}
                 <div>
                   <label className="text-sm text-muted-foreground block mb-1.5">Комментарий</label>
                   <Textarea
