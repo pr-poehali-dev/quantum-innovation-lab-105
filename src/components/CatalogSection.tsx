@@ -12,7 +12,7 @@ const products = [
   { id: 6, name: "Вечерний сбор", type: "Травяной", desc: "Мята, ромашка, чабрец", price: 390, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/e200f7b7-526b-4964-a619-58d9757870c0.jpg" },
   { id: 7, name: "Фруктовый микс", type: "Фруктовый чай", desc: "Малина, шиповник, яблоко", price: 420, badge: "Новинка", image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/4132d2b9-301b-48fa-97fb-3e2fc8b3d45c.jpg" },
   { id: 8, name: "Цейлонский OPA", type: "Чёрный чай", desc: "Классика, яркий настой", price: 380, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/8b6b7e07-47aa-4cfc-8e67-17eea05a814c.jpg" },
-  { id: 9, name: "Масала", type: "Пряный чай", desc: "Имбирь, кардамон, корица", price: 490, badge: null, image: null },
+  { id: 9, name: "Масала", type: "Пряный чай", desc: "Имбирь, кардамон, корица", price: 490, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/d8782f51-4f0b-48a4-9f0d-8cb7b269038e.jpg" },
 ];
 
 const typeColors: Record<string, string> = {
