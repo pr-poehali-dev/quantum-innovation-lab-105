@@ -4,15 +4,15 @@ import Icon from "@/components/ui/icon";
 import { useCart } from "@/context/CartContext";
 
 const products = [
-  { id: 1, name: "Ассам", type: "Чёрный чай", desc: "Терпкий, бодрящий", price: 450, badge: null },
-  { id: 2, name: "Жасминовый жемчуг", type: "Зелёный чай", desc: "Нежный аромат", price: 550, badge: null },
-  { id: 3, name: "Молочный улун", type: "Улун", desc: "Сливочный вкус", price: 670, badge: "Хит", discount: 15 },
-  { id: 4, name: "Пуэр Шу", type: "Пуэр", desc: "Земляной, глубокий", price: 890, badge: "Хит", discount: 15 },
-  { id: 5, name: "Бай Му Дань", type: "Белый чай", desc: "Медовый вкус", price: 990, badge: null },
-  { id: 6, name: "Вечерний сбор", type: "Травяной", desc: "Мята, ромашка, чабрец", price: 390, badge: null },
-  { id: 7, name: "Фруктовый микс", type: "Фруктовый чай", desc: "Малина, шиповник, яблоко", price: 420, badge: "Новинка" },
-  { id: 8, name: "Цейлонский OPA", type: "Чёрный чай", desc: "Классика, яркий настой", price: 380, badge: null },
-  { id: 9, name: "Масала", type: "Пряный чай", desc: "Имбирь, кардамон, корица", price: 490, badge: null },
+  { id: 1, name: "Ассам", type: "Чёрный чай", desc: "Терпкий, бодрящий", price: 450, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/6ca0a88b-4aaa-4bd2-8638-9fba5891f9a5.jpg" },
+  { id: 2, name: "Жасминовый жемчуг", type: "Зелёный чай", desc: "Нежный аромат", price: 550, badge: null, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/c256892b-e1cc-4cf0-bde0-34f3343fa9f6.jpg" },
+  { id: 3, name: "Молочный улун", type: "Улун", desc: "Сливочный вкус", price: 670, badge: "Хит", discount: 15, image: "https://cdn.poehali.dev/projects/4ebe760b-113c-482a-8041-e5ae4a54d8b6/bucket/94e129df-ef58-4a6a-952f-bb77dbdb47cf.jpg" },
+  { id: 4, name: "Пуэр Шу", type: "Пуэр", desc: "Земляной, глубокий", price: 890, badge: "Хит", discount: 15, image: null },
+  { id: 5, name: "Бай Му Дань", type: "Белый чай", desc: "Медовый вкус", price: 990, badge: null, image: null },
+  { id: 6, name: "Вечерний сбор", type: "Травяной", desc: "Мята, ромашка, чабрец", price: 390, badge: null, image: null },
+  { id: 7, name: "Фруктовый микс", type: "Фруктовый чай", desc: "Малина, шиповник, яблоко", price: 420, badge: "Новинка", image: null },
+  { id: 8, name: "Цейлонский OPA", type: "Чёрный чай", desc: "Классика, яркий настой", price: 380, badge: null, image: null },
+  { id: 9, name: "Масала", type: "Пряный чай", desc: "Имбирь, кардамон, корица", price: 490, badge: null, image: null },
 ];
 
 const typeColors: Record<string, string> = {
@@ -82,9 +82,15 @@ export function CatalogSection() {
                   <Icon name={isFav ? "Heart" : "Heart"} size={18} className={isFav ? "fill-rose-500 text-rose-500" : ""} />
                 </button>
 
-                <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mt-4 ${colorClass.split(" ")[0]} bg-opacity-20`}>
-                  <Icon name={icon} size={32} className={colorClass.split(" ")[1]} />
-                </div>
+                {p.image ? (
+                  <div className="w-full h-44 rounded-xl overflow-hidden mt-1">
+                    <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mt-4 ${colorClass.split(" ")[0]} bg-opacity-20`}>
+                    <Icon name={icon} size={32} className={colorClass.split(" ")[1]} />
+                  </div>
+                )}
 
                 <div className="text-center">
                   <span className={`text-xs px-2 py-0.5 rounded-full ${colorClass}`}>{p.type}</span>
