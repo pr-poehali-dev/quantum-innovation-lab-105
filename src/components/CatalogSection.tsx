@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { useCart } from "@/context/CartContext";
 
 const products = [
   { id: 1, name: "Ассам", type: "Чёрный чай", desc: "Терпкий, бодрящий", price: 450, badge: null },
@@ -38,14 +39,10 @@ const typeIcons: Record<string, string> = {
 
 export function CatalogSection() {
   const [favorites, setFavorites] = useState<number[]>([]);
-  const [cart, setCart] = useState<number[]>([]);
+  const { addItem, items } = useCart();
 
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
-  };
-
-  const addToCart = (id: number) => {
-    setCart((prev) => [...prev, id]);
   };
 
   return (
@@ -62,7 +59,7 @@ export function CatalogSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((p) => {
             const discountedPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : null;
-            const inCart = cart.includes(p.id);
+            const inCart = items.some((i) => i.id === p.id);
             const isFav = favorites.includes(p.id);
             const icon = typeIcons[p.type] || "Leaf";
             const colorClass = typeColors[p.type] || "bg-green-700/10 text-green-700";
@@ -110,7 +107,7 @@ export function CatalogSection() {
                   <Button
                     size="sm"
                     className={`rounded-full text-xs ${inCart ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
-                    onClick={() => addToCart(p.id)}
+                    onClick={() => addItem({ id: p.id, name: p.name, type: p.type, price: p.price, ...(discountedPrice ? { discountedPrice } : {}) })}
                   >
                     {inCart ? "Добавлено" : "В корзину"}
                   </Button>
