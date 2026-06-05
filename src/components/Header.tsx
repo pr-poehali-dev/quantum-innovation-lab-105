@@ -20,6 +20,9 @@ export function Header() {
         <a href="#contacts" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
           Контакты
         </a>
+        <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          О чае
+        </a>
       </nav>
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" className="relative gap-2" onClick={() => setIsOpen(true)}>
